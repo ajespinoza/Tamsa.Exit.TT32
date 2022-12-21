@@ -1,0 +1,78 @@
+#=================================================================================
+# StdConfig
+#
+# Standard Project configurations
+#
+# Created
+#      by: Ernesto Castro (ercastro@siderca.com) Sep. '07
+#      by: Leandro Conde  (leandor@gmail.com)    Dec. '07
+#=================================================================================
+
+Import('env')
+
+import os
+
+
+env['TMPDIR'] = '#_temp'
+env['SRCDIR'] = '#source'
+env['RELEASEDIR'] = '#release'
+env['RELDIR'] = '$RELEASEDIR'
+env['DOCDIR'] = '#doc'
+
+env['DCUDIR'] = '$TMPDIR/_dcu'
+env['DEPDIR'] = '$TMPDIR/_bin'
+
+env['EXTDIR'] = '$SRCDIR/_ext'
+env['PROJLIBS'] = '$SRCDIR/library'
+env['COMMONSRC'] = '$SRCDIR/common'
+
+env['LIBDIR'] = '$EXTDIR/_lib'
+env['SYSDIR'] = '$EXTDIR/_sys'
+env['TLBDIR'] = '$EXTDIR/_tlb'
+
+env['BINDIR'] = '$RELEASEDIR/binaries'
+env['TESTDIR'] = '$RELEASEDIR/testing'
+env['SETUPDIR'] = '$RELEASEDIR/setups'
+env['DEBUGDIR'] = '$RELEASEDIR/debug'
+
+env['DCPDIR'] = '$BINDIR'
+env['RTLDIR'] = '$BINDIR'
+
+env['TLBEXT'] = '.pas'
+env['DOFEXT'] = '.dof'
+
+PATHs = [
+      env.Dir('$BINDIR').abspath
+    ]
+
+env['ENV']['WC'] = env.Dir('#').abspath
+env['ENV']['DEPDIR'] = env.Dir('$DEPDIR').abspath
+env['ENV']['DCUDIR'] = env.Dir('$DCUDIR').abspath
+env['ENV']['DCPDIR'] = env.Dir('$DCPDIR').abspath
+env['ENV']['RTLDIR'] = env.Dir('$RTLDIR').abspath
+env['ENV']['SRCDIR'] = env.Dir('$SRCDIR').abspath
+env['ENV']['BINDIR'] = env.Dir('$BINDIR').abspath
+env['ENV']['LIBDIR'] = env.Dir('$LIBDIR').abspath
+env['ENV']['SYSDIR'] = env.Dir('$SYSDIR').abspath
+env['ENV']['TLBDIR'] = env.Dir('$TLBDIR').abspath
+env['ENV']['RELDIR'] = env.Dir('$RELEASEDIR').abspath
+env['ENV']['TESTDIR'] = env.Dir('$TESTDIR').abspath
+env['ENV']['DEBUGDIR'] = env.Dir('$DEBUGDIR').abspath
+env['ENV']['PROJLIB'] = env.Dir('$PROJLIBS').abspath
+
+env.PrependENVPath(
+    'PATH'
+    , PATHs
+    )
+
+env.AppendToPath(
+    DCC32_UNIT = [
+          env.Dir('$DCPDIR')
+        , env.Dir('$TLBDIR')
+      ]
+  )
+
+# Paths para el compilador
+env['DCC32_DCU'] = '$DCUDIR'
+env['DCC32_DCP'] = '$BINDIR'
+env['DCC32_BPL'] = '$BINDIR'

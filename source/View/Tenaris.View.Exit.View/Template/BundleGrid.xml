@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Columns>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="IdBundle" Binding ="IdBundle" Visible="false"  ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="IdBatch" Binding ="IdBatch" Visible="true"  ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="HeatNumber" Binding="HeatNumber" Visible="true" ></Header>
+  </item>
+
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="IdCradle" Binding="IdCradle" Visible="true" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="IdSpecification" Binding ="IdSpecification" Visible="false" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="BundleNumber" Binding="BundleNumber" Visible="true"></Header>
+  </item> 
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="Status" Binding="Status" Visible="true" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="IsManual" Binding="IsManual" Visible="true" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="ItemStatus" Binding="ItemStatus" Visible="true" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="Side" Binding="Side" Visible="true" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="Pieces" Binding="Pieces" Visible="true" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="Weight" Binding="Weight" Visible="true" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="CreationDate" Binding="CreationDate" Visible="true" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="SendingDate" Binding="SendingDate" Visible="true" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Bundle" Code="RejectionCause"  Binding="RejectionCause" Visible="true" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Cradle" Code="MaximumPieces" Binding="MaximumPieces" Visible="true" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Cradle" Code="MaximumWeight" Binding="MaximumWeight" Visible="true" ></Header>
+  </item>
+  <item>
+    <Header HeaderGrid="" Component ="Cradle" Code="Mode" Binding="Mode" Visible="true" ></Header>
+  </item>
+
+  <item>
+    <Header HeaderGrid="" Component ="Cradle" Code="EE" Binding="EE" Visible="true" ></Header>
+  </item>
+ 
+</Columns>
+

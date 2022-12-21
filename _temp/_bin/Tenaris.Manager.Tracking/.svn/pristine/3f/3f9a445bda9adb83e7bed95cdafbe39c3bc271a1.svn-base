@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!-- esta seccion debe ser la primera antes de todo -->
+  <configSections>
+    <section name="TrackingManager"
+             type="Tenaris.Library.Proxy.Factories.GenericProxyFactoryConfigurationSection, Tenaris.Library.Proxy, Version=4.1.0.0, Culture=neutral, PublicKeyToken=c4a5016cfc42fcd0" />
+
+    <section name="Tenaris.Library.Proxy" type="Tenaris.Library.Proxy.Configuration.ProxyFactoryConfigurationSection, Tenaris.Library.Proxy, Version=4.1.0.0, Culture=neutral, PublicKeyToken=c4a5016cfc42fcd0"/>
+
+    <section name="log" type="Tenaris.Library.Log.LogConfiguration, Tenaris.Library.Log" />
+
+  </configSections>
+
+  <TrackingManager
+    instanceType="Tenaris.Manager.Tracking.Shared.ITrackingManager, Tenaris.Manager.Tracking.Shared"
+    aliveInterval="5000"
+    singleInstance="true"
+    validateConnection="false">
+    <Redundancy>
+      <Address url="tcp://10.41.186.46:9501/TrackingManager.soap" forumPresent="false" isTargetManager="true"/>
+      <Address url="tcp://10.41.186.128:9501/TrackingManager.soap" forumPresent="false" isTargetManager="true"/>
+    </Redundancy>
+  </TrackingManager>
+
+  <Tenaris.Library.Proxy factoryType="Tenaris.Library.Proxy.Factories.PipeProxyFactory, Tenaris.Library.Proxy, Version=4.1.0.0, Culture=neutral, PublicKeyToken=c4a5016cfc42fcd0">
+    <Configuration>
+      <Components>
+        <Component type="Tenaris.Library.Proxy.Components.ConnectionMonitorComponent, Tenaris.Library.Proxy, Version=4.1.0.0, Culture=neutral, PublicKeyToken=c4a5016cfc42fcd0">
+          <Interval>1000</Interval>
+        </Component>
+      </Components>
+      <EventListener type="Tenaris.Library.Proxy.EventListener, Tenaris.Library.Proxy, Version=4.1.0.0, Culture=neutral, PublicKeyToken=c4a5016cfc42fcd0"/>
+      <Dispatcher type="Tenaris.Library.Proxy.Dispatchers.DirectMessageDispatcher, Tenaris.Library.Proxy, Version=4.1.0.0, Culture=neutral, PublicKeyToken=c4a5016cfc42fcd0"/>
+    </Configuration>
+  </Tenaris.Library.Proxy>
+
+  <system.runtime.remoting>
+    <application name="Client">
+      <channels>
+        <channel ref="tcp" port="0">
+          <clientProviders>
+            <provider type="Tenaris.Library.Proxy.Remoting.ClientRemotingInterceptorProvider, Tenaris.Library.Proxy"/>
+            <formatter ref="binary" typeFilterLevel="Full" />
+          </clientProviders>
+          <serverProviders>
+            <formatter ref="binary" typeFilterLevel="Full" />
+          </serverProviders>
+        </channel>
+      </channels>
+    </application>
+  </system.runtime.remoting>
+
+  <log
+    maxFileSize="8096"
+    msgFormat="{Timestamp:HH:mm:ss.fff} ; {Level,-7} ; {ClassName} ; {Message} ; {MethodName}"
+    logLevel="Debug"
+    traceAttributeLogEnabled="false"
+    additionalLogDestination="Console"
+    />
+
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+  </startup>
+
+</configuration>

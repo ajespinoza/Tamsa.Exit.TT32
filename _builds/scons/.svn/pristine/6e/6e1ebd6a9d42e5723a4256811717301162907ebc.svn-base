@@ -1,0 +1,17 @@
+#################################################################################################
+#
+# Debug.scons
+#
+# Add debug specific builders and tune some parameters for debugging
+#
+# YOU SHOULDNT NEED TO EDIT THIS FILE!!!
+#
+#
+# 	Created by: Ernesto Castro (ercastro@siderca.com) Sep. '07
+#
+#################################################################################################
+
+Import('env')
+
+env['DCC32_OPTS'] = '-GD -H -VR -W -Z -M -Q'
+env['DCC32_SWITCHES'] = '-$$C+ -$$D+ -$$G+ -$$H+ -$$I- -$$J- -$$L+ -$$M- -$$O- -$$P+ -$$Q- -$$R- -$$T- -$$U- -$$V+ -$$W+ -$$X+ -$$Y+'

@@ -1,0 +1,293 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:UI="clr-namespace:Tenaris.Library.UI.Framework;assembly=Tenaris.Library.UI.Framework"
+                    xmlns:images="clr-namespace:Tenaris.Library.UI.Framework.Resources.Images;assembly=Tenaris.Library.UI.Framework"                              
+                    xmlns:vm="clr-namespace:Tenaris.View.Exit.ViewModel;assembly=Tenaris.View.Exit.ViewModel"                           
+                    xmlns:Lang="clr-namespace:Tenaris.View.Exit.Language;assembly=Tenaris.View.Exit.Language"
+                    >
+
+
+    <!--Confirm Apply-->
+    <DataTemplate x:Key="ConfirmApply">
+        <Border Background="{StaticResource DefaultControlBackgroundBrush}" BorderBrush="Gray">
+            <StackPanel Margin="10,10,30,10">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="40" Height="40" UI:Image.Source="{x:Static images:Common.Size_48.icon_msgbox_help}" VerticalAlignment="Top" />
+                    <TextBlock Margin="20,0,0,0" Text="{Binding Path=ConfirmMessage}" TextWrapping="Wrap" TextAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource ItemValue}" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+    <!--<DataTemplate x:Key="ConfirmMsg">
+        <Border Background="{StaticResource DefaultControlBackgroundBrush}" BorderBrush="Gray">
+            <StackPanel Margin="10,10,30,10">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="40" Height="40" UI:Image.Source="{x:Static images:Common.Size_48.icon_warning}" VerticalAlignment="Top" />
+                    <TextBlock Margin="20,0,0,0" Text="{Binding Path=ConfirmMessage}" TextWrapping="Wrap" TextAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource ItemValue}" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </DataTemplate>-->
+
+    <!--BundleStatusTop-->
+    <ControlTemplate x:Key="BundleStatusTop">
+        <StackPanel HorizontalAlignment="Right">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="{x:Static Lang:LanguageResource.BundleStatus}" 
+                                           Foreground="Black" Width="Auto" Grid.Column="0" Grid.Row="0"/>
+
+
+                <Image x:Name="Img0" Grid.Column="1" Grid.Row="0"
+                                      Source="/Images/icon_tool.png"                                      
+                                       Stretch="Fill" Height="16" Width="16"/>
+
+                <TextBlock Text="{x:Static Lang:LanguageResource.StatusInProcess}"  Foreground="#CC0066" Width="Auto" Grid.Column="2" Grid.Row="0"/>
+
+                <Image x:Name="Img1" Grid.Column="3" Grid.Row="0"
+                                       
+                                       UI:Image.Source="{x:Static images:Common.Size_16.icon_ok}"  
+                                       Stretch="Fill" Height="16" Width="16"/>
+
+
+                <TextBlock Text="{x:Static Lang:LanguageResource.StatusOk}" Foreground="#CC0066" Width="Auto" Grid.Column="4" Grid.Row="0"/>
+
+                <Image x:Name="Img2" Grid.Column="5" Grid.Row="0"
+                                        UI:Image.Source="{x:Static images:Common.Size_16.icon_close}"                                      
+                                       Stretch="Fill" Height="16" Width="16"/>
+
+                <TextBlock Text="{x:Static Lang:LanguageResource.StatusError}"  Foreground="#CC0066" Width="Auto" Grid.Column="6" Grid.Row="0"/>
+
+                <Image x:Name="Img3" Grid.Column="7" Grid.Row="0"
+                                       UI:Image.Source="{x:Static images:Common.Size_16.icon_warning}"                                       
+                                       Stretch="Fill" Height="16" Width="16"/>
+
+
+                <TextBlock Text="{x:Static Lang:LanguageResource.StatusPending}"  Foreground="#CC0066" Width="Auto" Grid.Column="8" Grid.Row="0"/>
+            </Grid>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="BundleHStatusTop">
+        <StackPanel HorizontalAlignment="Right">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>                    
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="{x:Static Lang:LanguageResource.BundleStatus}" 
+                                           Foreground="Black" Width="Auto" Grid.Column="0" Grid.Row="0"/>
+
+              
+                <Image x:Name="Img1" Grid.Column="1" Grid.Row="0"
+                                       
+                                       UI:Image.Source="{x:Static images:Common.Size_16.icon_ok}"  
+                                       Stretch="Fill" Height="16" Width="16"/>
+
+
+                <TextBlock Text="{x:Static Lang:LanguageResource.StatusOk}" Foreground="#CC0066" Width="Auto" Grid.Column="2" Grid.Row="0"/>
+
+                <Image x:Name="Img2" Grid.Column="3" Grid.Row="0"
+                                        UI:Image.Source="{x:Static images:Common.Size_16.icon_close}"                                      
+                                       Stretch="Fill" Height="16" Width="16"/>
+
+                <TextBlock Text="{x:Static Lang:LanguageResource.StatusError}"  Foreground="#CC0066" Width="Auto" Grid.Column="4" Grid.Row="0"/>
+
+                <Image x:Name="Img3" Grid.Column="5" Grid.Row="0"
+                                       UI:Image.Source="{x:Static images:Common.Size_16.icon_warning}"                                       
+                                       Stretch="Fill" Height="16" Width="16"/>
+
+
+                <TextBlock Text="{x:Static Lang:LanguageResource.StatusPending}"  Foreground="#CC0066" Width="Auto" Grid.Column="6" Grid.Row="0"/>
+            </Grid>
+        </StackPanel>
+    </ControlTemplate>
+
+    <!--PipeStatusTop-->
+    <ControlTemplate x:Key="PipeStatusTop">
+        <StackPanel HorizontalAlignment="Left">
+            <Grid>
+                <Grid.ColumnDefinitions>                  
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="{x:Static Lang:LanguageResource.PipeStatus}" 
+                                           Foreground="Black" Width="Auto" Grid.Column="0" Grid.Row="0"/>
+                <Image x:Name="Img4" Grid.Column="1" Grid.Row="0"
+                       UI:Image.Source="{x:Static images:Common.Size_16.icon_accept}"  
+                       Stretch="Fill" Height="16" Width="16"/>
+                <TextBlock Text="{x:Static Lang:LanguageResource.StatusGood}" Foreground="#CC0066" Width="Auto" Grid.Column="2" Grid.Row="0"/>
+                <Image x:Name="Img0" Grid.Column="3" Grid.Row="0"
+                       UI:Image.Source="{x:Static images:Common.Size_16.icon_reject}"  
+                       Stretch="Fill" Height="16" Width="16"/>
+                <TextBlock Text="{x:Static Lang:LanguageResource.StatusRejected}" Foreground="#CC0066" Width="Auto" Grid.Column="4" Grid.Row="0"/>
+                                
+
+                <Image x:Name="Img1" Grid.Column="5" Grid.Row="0"                                       
+                                       UI:Image.Source="{x:Static images:Common.Size_16.icon_refresh}"  
+                                       Stretch="Fill" Height="16" Width="16"/>
+                <TextBlock Text="{x:Static Lang:LanguageResource.StatusRework}" Foreground="#CC0066" Width="Auto" Grid.Column="6" Grid.Row="0"/>
+                
+
+                <Image x:Name="Img2" Grid.Column="7" Grid.Row="0"
+                                       UI:Image.Source="{x:Static images:Common.Size_16.icon_warning}"                                       
+                                       Stretch="Fill" Height="16" Width="16"/>
+
+                <TextBlock Text="{x:Static Lang:LanguageResource.StatusWarned}" Foreground="#CC0066" Width="Auto" Grid.Column="8" Grid.Row="0"/>
+                
+
+            </Grid>
+        </StackPanel>
+
+    </ControlTemplate>
+    
+    <!--ModeTop-->
+    <ControlTemplate x:Key="ModeTop">
+        <StackPanel HorizontalAlignment="Left">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Modo :" 
+                                           Foreground="Black" Width="Auto" Grid.Column="0" Grid.Row="0"/>
+
+
+                <Rectangle Grid.Column="1" Grid.Row="0" Height="16" Width="16" Fill="#ffd700"  Stroke="Black" StrokeThickness="1"
+                                           RadiusX="2.5" RadiusY="2.5">
+                </Rectangle>
+
+                <TextBlock Text="Manual" Foreground="#CC0066" Width="60" Grid.Column="2" Grid.Row="0"/>
+
+
+                <Rectangle Grid.Column="3" Grid.Row="0" Height="16" Width="16" Fill="#228b22" Stroke="Black" StrokeThickness="1"
+                                           RadiusX="2.5" RadiusY="2.5">
+                </Rectangle>
+
+                <TextBlock Text="Automático" Foreground="#CC0066" Width="90" Grid.Column="4" Grid.Row="0"/>
+                
+            </Grid>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="CradleCommand">
+        <Border BorderBrush="Gray" BorderThickness="1" Padding="2" Height="40">
+            <StackPanel Orientation="Horizontal" DataContext="{Binding}">
+                <Button Content="{x:Static Lang:LanguageResource.btnSendBundle}" UI:Image.Source="{x:Static images:Common.Size_32.icon_send_info}" Command="{Binding SCSendBundle}" ></Button>
+                <Button Content="{x:Static Lang:LanguageResource.btnInsBundle}" UI:Image.Source="{x:Static images:Common.Size_32.icon_insert}" Command="{Binding SCInsertBundle}">                 
+                </Button>
+                <Button Content="{x:Static Lang:LanguageResource.btnUpdBundle}" UI:Image.Source="{x:Static images:Common.Size_32.icon_close}" Command="{Binding SCEditBundle}"></Button>
+                <Button Content="{x:Static Lang:LanguageResource.btnDelBundle}" UI:Image.Source="{x:Static images:Common.Size_32.icon_delete}" Command="{Binding SCDeleteBundle}"></Button>
+                <Button Content="{x:Static Lang:LanguageResource.btnInsPipe}" UI:Image.Source="{x:Static images:Common.Size_22.icon_insert}" Command="{Binding SCInsertPipe}" HorizontalAlignment="Left"></Button>
+               <!--<Button Content="{x:Static Lang:LanguageResource.btnTagPrint}" UI:Image.Source="{x:Static images:Common.Size_22.icon_printer}"  HorizontalAlignment="Left"></Button>-->
+            </StackPanel>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="BundleCommand">
+        <Border BorderBrush="Gray" BorderThickness="1" Padding="2" Height="40">
+            <StackPanel Orientation="Horizontal" DataContext="{Binding}">
+                <Button Content="{x:Static Lang:LanguageResource.btnDelPipe}" UI:Image.Source="{x:Static images:Common.Size_32.icon_delete}" Command="{Binding SCDeletePipe}" ></Button>
+                <Button Content="{x:Static Lang:LanguageResource.btnMovePipe}" UI:Image.Source="{x:Static images:Common.Size_22.icon_paste}" Command="{Binding SCMovePipe}" HorizontalAlignment="Left"></Button>                
+            </StackPanel>
+        </Border>
+    </ControlTemplate>
+
+
+    <ControlTemplate x:Key="CradleHCommand">
+        <Border BorderBrush="Gray" BorderThickness="1" Padding="2" Height="40">
+            <StackPanel Orientation="Horizontal" DataContext="{Binding}">
+                <Button Content="{x:Static Lang:LanguageResource.btnSendBundle}" UI:Image.Source="{x:Static images:Common.Size_32.icon_send_info}" Command="{Binding SCSendBundle}" ></Button>
+                <Button Content="{x:Static Lang:LanguageResource.btnInsBundle}" UI:Image.Source="{x:Static images:Common.Size_32.icon_insert}" Command="{Binding SCInsertBundle}">
+                </Button>
+                <!--<Button Content="{x:Static Lang:LanguageResource.btnUpdBundle}" UI:Image.Source="{x:Static images:Common.Size_32.icon_edit}" Command="{Binding SCEditBundle}" ></Button>-->
+                <Button Content="{x:Static Lang:LanguageResource.btnDelBundle}" UI:Image.Source="{x:Static images:Common.Size_32.icon_delete}" Command="{Binding SCDeleteBundle}"></Button>
+                <Button Content="{x:Static Lang:LanguageResource.btnInsPipe}" UI:Image.Source="{x:Static images:Common.Size_22.icon_insert}" Command="{Binding SCInsertPipe}" HorizontalAlignment="Left"></Button>
+                <!--<Button Content="{x:Static Lang:LanguageResource.btnTagPrint}" UI:Image.Source="{x:Static images:Common.Size_22.icon_printer}"  HorizontalAlignment="Left"></Button>-->
+            </StackPanel>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="BundleHCommand">
+        <Border BorderBrush="Gray" BorderThickness="1" Padding="2" Height="40">
+            <StackPanel Orientation="Horizontal" DataContext="{Binding}">
+                <Button Content="{x:Static Lang:LanguageResource.btnDelPipe}" UI:Image.Source="{x:Static images:Common.Size_32.icon_delete}" Command="{Binding SCDeletePipe}" ></Button>
+                <!--<Button Content="{x:Static Lang:LanguageResource.btnMovePipe}" UI:Image.Source="{x:Static images:Common.Size_22.icon_paste}" Command="{Binding SCMovePipe}" HorizontalAlignment="Left"></Button>-->
+            </StackPanel>
+        </Border>
+    </ControlTemplate>
+
+    <!--<ControlTemplate x:Key="CheckCradles">
+        <StackPanel Orientation="Vertical">
+            <Label  Content="Filtrado por:" Style="{StaticResource ColumnHeader}" HorizontalAlignment="Stretch" />
+            <Border BorderBrush="Gray" BorderThickness="1" Padding="2"  Style="{StaticResource SubHeader}">
+            <StackPanel Orientation="Horizontal" DataContext="{Binding}">
+                    <CheckBox Content="{x:Static Lang:LanguageResource.All}" IsChecked="{Binding AllFiltered, Mode=TwoWay}" Width="80" Foreground="Black"></CheckBox>
+                    <ItemsControl ItemsSource="{Binding Cradles}">
+                        <ItemsControl.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <ItemsPresenter/>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding CradlesCount}"></UniformGrid>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Cradle.Code}" IsChecked="{Binding IsFiltered, Mode=TwoWay}" Width="100" Foreground="Black"></CheckBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+        </Border>
+        </StackPanel>
+    </ControlTemplate>-->
+    
+  
+</ResourceDictionary>

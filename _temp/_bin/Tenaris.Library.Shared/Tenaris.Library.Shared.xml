@@ -1,0 +1,348 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tenaris.Library.Shared</name>
+    </assembly>
+    <members>
+        <member name="T:Tenaris.Library.Shared.ItemSide">
+            <summary>
+            ItemSide type
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Shared.IItemSide">
+            <summary>
+            Item side public interface
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Shared.IEntity">
+            <summary>
+            Represents a common entity.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.IEntity.Id">
+            <summary>
+            Gets the ID of the entity.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.IEntity.Code">
+            <summary>
+            Gets the code of the entity.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.IEntity.Name">
+            <summary>
+            Gets the name of the entity.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.IEntity.Description">
+            <summary>
+            Gets the description of the entity.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Shared.ItemSide.#ctor(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Shared.ItemSide"/> class.
+            </summary>
+            <param name="id">
+            Item side Id
+            </param>
+            <param name="code">
+            Item side code
+            </param>
+            <param name="name">
+            Item side name
+            </param>
+            <param name="description">
+            Item side description
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.Shared.ItemSide.ToString">
+            <summary>
+            Overrides object's ToString()
+            </summary>
+            <returns>
+            String representation for the object
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.Shared.ItemSide.Equals(System.Object)">
+            <summary>
+            Determines whether the specified ItemSide is equal to the current ItemSide comparing their IDs.
+            </summary>
+            <param name="obj">The object to compare with the current ItemSide</param>
+            <returns>true if the specified Object is equal to the current Object; otherwise, false.</returns>
+        </member>
+        <member name="M:Tenaris.Library.Shared.ItemSide.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>A hash code for the current Object.</returns>
+        </member>
+        <member name="P:Tenaris.Library.Shared.ItemSide.Id">
+            <summary>
+            Gets Id
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.ItemSide.Code">
+            <summary>
+            Gets Code
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.ItemSide.Name">
+            <summary>
+            Gets Name
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.ItemSide.Description">
+            <summary>
+            Gets Description
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Shared.Direction">
+            <summary>
+            Represents parameter direction. Previously represented as string, it's been replaced by an integer.
+            Level 2 => Level 1 : Direction = 0.
+            Level 1 => Level 2 : Direction = 1.
+            Level 2 => Level 2 : Direction = 2.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Shared.Direction.Level2ToLevel1">
+            <summary>
+            The parameter is from PC to PLC
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Shared.Direction.Level1ToLevel2">
+            <summary>
+            The parameter is from PLC to PC
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Shared.Direction.Level2ToLevel2">
+            <summary>
+            The parameter is from PC to PC
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Shared.Status">
+            <summary>
+            Enumeration with all possible status applicable for batch and MachineBatch
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Shared.Status.Scheduled">
+            <summary>
+            Scheduled status
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Shared.Status.Future">
+            <summary>
+            Future status
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Shared.Status.NextFuture">
+            <summary>
+            NextFuture status
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Shared.Status.Active">
+            <summary>
+            Active status
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Shared.Status.Hold">
+            <summary>
+            Hold status
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Shared.Status.Ended">
+            <summary>
+            Ended status
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Shared.Status.Canceled">
+            <summary>
+            Canceled status
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Shared.DataNotFoundException">
+            <summary>
+            Exception thown when asked data has not reached because it isn't in the source.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Shared.DataNotFoundException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Shared.DataNotFoundException"/> class.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Shared.DataNotFoundException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Shared.DataNotFoundException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Tenaris.Library.Shared.DataNotFoundException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Shared.DataNotFoundException"/> class with a specified error message 
+            and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+            <param name="inner">The exception that is the cause of the current exception, or a null reference if no inner exception is specified.</param>
+        </member>
+        <member name="M:Tenaris.Library.Shared.DataNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Shared.DataNotFoundException"/> class.
+            The exception is being serialized across application boundries but there is no way for the exception to be recreated. 
+            It needs the deserialization constructor. In the book CLR via C# Jeffery Richter recommends every custom exception 
+            you create should have the deserialization constructor just so the exception can cross application domains sometime 
+            in the future if it needs to.
+            </summary>
+            <param name="info">Serialization info object</param>
+            <param name="context">Streaming context</param>
+        </member>
+        <member name="T:Tenaris.Library.Shared.OperationFaultException">
+            <summary>
+            Exception thrown when operation fails.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Shared.OperationFaultException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Shared.OperationFaultException"/> class.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Shared.OperationFaultException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Shared.OperationFaultException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Tenaris.Library.Shared.OperationFaultException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Shared.OperationFaultException"/> class with a specified
+            error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="inner">The exception that is the cause of the current exception, or a null reference if no inner exception is specified.</param>
+        </member>
+        <member name="M:Tenaris.Library.Shared.OperationFaultException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Shared.OperationFaultException"/> class.
+            The exception is being serialized across application boundries but there is no way for the exception to be recreated. 
+            It needs the deserialization constructor. In the book CLR via C# Jeffery Richter recommends every custom exception 
+            you create should have the deserialization constructor just so the exception can cross application domains sometime 
+            in the future if it needs to.
+            </summary>
+            <param name="info">Serialization info object</param>
+            <param name="context">Streaming context</param>
+        </member>
+        <member name="T:Tenaris.Library.Shared.IArea">
+            <summary>
+            Represents the minimum data for an area.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Shared.IMachine">
+            <summary>
+            Represents a machine.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.IMachine.IdArea">
+            <summary>
+            Gets the area ID.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.IMachine.PlcCode">
+            <summary>
+            Gets code that represets the machine in the PLC.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Shared.Area">
+            <summary>
+            Area class.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Shared.Entity">
+            <summary>
+            Common entity class.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Shared.Entity.#ctor(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Shared.Entity"/> class.
+            </summary>
+            <param name="id">Entity ID.</param>
+            <param name="code">Entity code.</param>
+            <param name="name">Entity name.</param>
+            <param name="description">Entity description.</param>
+        </member>
+        <member name="P:Tenaris.Library.Shared.Entity.Id">
+            <summary>
+            Gets the entity ID.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.Entity.Code">
+            <summary>
+            Gets the entity code.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.Entity.Name">
+            <summary>
+            Gets the entity name.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.Entity.Description">
+            <summary>
+            Gets the entity description.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Shared.Area.#ctor(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Shared.Area"/> class.
+            </summary>
+            <param name="id">Area ID.</param>
+            <param name="code">Area code.</param>
+            <param name="name">Area name.</param>
+            <param name="description">Area description.</param>
+        </member>
+        <member name="T:Tenaris.Library.Shared.MachineBase">
+            <summary>
+            Represents a machine from common schema.
+            This class must be inherited in case additional features are required
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Shared.MachineBase.#ctor(System.Int32,System.String,System.String,System.String,System.Int16)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Shared.MachineBase"/> class.
+            </summary>
+            <param name="id">Machine ID.</param>
+            <param name="code">Machine code.</param>
+            <param name="name">Machine name.</param>
+            <param name="description">Machine description.</param>
+            <param name="plcCode">Is machine active.</param>
+        </member>
+        <member name="P:Tenaris.Library.Shared.MachineBase.Id">
+            <summary>
+            Gets the BaseMachine unique database ID.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.MachineBase.Code">
+            <summary>
+            Gets the BaseMachine code.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.MachineBase.Name">
+            <summary>
+            Gets the BaseMachine name.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.MachineBase.Description">
+            <summary>
+            Gets the BaseMachine description.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.MachineBase.IdArea">
+            <summary>
+            Gets the ID of the area.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Shared.MachineBase.PlcCode">
+            <summary>
+            Gets code that represets the machine in the PLC.
+            </summary>
+        </member>
+    </members>
+</doc>

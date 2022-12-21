@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{688FC5C1-E292-4ACD-938D-BCC487872138}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tamsa.Manager.Exit.Host</RootNamespace>
+    <AssemblyName>Tamsa.Manager.Exit.Host</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Tamsa.Manager.Exit.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\_temp\_bin\CastleDynamicProxy\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2">
+      <HintPath>..\..\..\_temp\_bin\CastleDynamicProxy\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Services.Logging.log4netIntegration">
+      <HintPath>..\..\..\_temp\_bin\CastleDynamicProxy\Castle.Services.Logging.log4netIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Services.Logging.NLogIntegration">
+      <HintPath>..\..\..\_temp\_bin\CastleDynamicProxy\Castle.Services.Logging.NLogIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp">
+      <HintPath>..\..\..\_temp\_bin\PostSharp\PostSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.Laos, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_temp\_bin\PostSharp\PostSharp.Laos.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tenaris.Library.ConnectionMonitor">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Proxy\Tenaris.Library.ConnectionMonitor.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.DbClient">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.DbClient\Tenaris.Library.DbClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Framework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=d69ca37b4d4b73b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Framework\Tenaris.Library.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Log">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Log\Tenaris.Library.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Proxy">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Proxy\Tenaris.Library.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Shared, Version=4.1.0.0, Culture=neutral, PublicKeyToken=1e815cbaa9d1521f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Shared\Tenaris.Library.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Manager.Forum.Shared, Version=4.1.0.0, Culture=neutral, PublicKeyToken=8a748c80852b8187, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Manager.Forum.Shared\Tenaris.Manager.Forum.Shared.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExitServer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Tamsa.Manager.Exit.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\lib\Tamsa.Manager.Exit.Shared\Tamsa.Manager.Exit.Shared.csproj">
+      <Project>{49F7FAAF-7741-467D-9DEE-4D6C8C8566F3}</Project>
+      <Name>Tamsa.Manager.Exit.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\Tamsa.Manager.Exit\Tamsa.Manager.Exit.csproj">
+      <Project>{98EE3CC0-B718-40F5-A308-82137D2F04E6}</Project>
+      <Name>Tamsa.Manager.Exit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>COPY /y "$(TargetDir)$(TargetName).exe" "%25BINDIR%25\$(TargetName).exe"
+COPY /y "$(TargetDir)$(TargetName).pdb" "%25DEBUGDIR%25\$(TargetName).pdb"
+COPY /y "$(TargetDir)$(TargetName).exe.config" "%25BINDIR%25\$(TargetName).exe.config"
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

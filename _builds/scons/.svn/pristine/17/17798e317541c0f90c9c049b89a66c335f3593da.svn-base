@@ -1,0 +1,18 @@
+#=================================================================================
+# StdInstall
+#
+# Standard definitions for Install rules
+#
+# Created
+#      by: Leandro Conde  (leandor@gmail.com)    May. '08
+#=================================================================================
+
+Import('env')
+
+
+instscript = env.File('#Install.scons')
+
+if instscript.exists():
+    env.SConscript(instscript, exports = 'env')
+
+

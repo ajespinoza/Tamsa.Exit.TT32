@@ -1,0 +1,5 @@
+@ECHO OFF
+SET WORKDIR=%~dp0
+PUSHD %WORKDIR% && (SVN update && CALL scons.bat . MSVSVERSION=9.0)
+PAUSE
+POPD

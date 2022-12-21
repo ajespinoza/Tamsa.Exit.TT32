@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{91241220-3BDF-4763-9DA0-AB81802EE58A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tenaris.View.Exit.View</RootNamespace>
+    <AssemblyName>Tenaris.View.Exit.View</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>TemplateView.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\_temp\_bin\CastleDynamicProxy\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2">
+      <HintPath>..\..\..\_temp\_bin\CastleDynamicProxy\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\..\..\_temp\_bin\Microsoft.Practices.Prism\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity">
+      <HintPath>..\..\..\_temp\_bin\Microsoft.Practices.Prism\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp">
+      <HintPath>..\..\..\_temp\_bin\PostSharp\PostSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.Laos">
+      <HintPath>..\..\..\_temp\_bin\PostSharp\PostSharp.Laos.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\..\..\_temp\_bin\System.Windows.Interactivity\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Tamsa.Manager.Exit.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=febc45fde0c6f4f3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Tamsa.Manager.Exit.Shared\bin\Debug\Tamsa.Manager.Exit.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.ConnectionMonitor, Version=4.1.0.0, Culture=neutral, PublicKeyToken=69f947a774df559b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Proxy\Tenaris.Library.ConnectionMonitor.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Framework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=d69ca37b4d4b73b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Framework\Tenaris.Library.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Log, Version=4.1.0.0, Culture=neutral, PublicKeyToken=bbb03b5ff4bbb68b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Log\Tenaris.Library.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Proxy">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Proxy\Tenaris.Library.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.UI.Framework">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.UI.Framework\Tenaris.Library.UI.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Manager.Forum.Shared, Version=4.1.0.0, Culture=neutral, PublicKeyToken=8a748c80852b8187, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Manager.Forum.Shared\Tenaris.Manager.Forum.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Service.Security">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Service.Security\Tenaris.Service.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Service.Security.Client, Version=4.1.0.0, Culture=neutral, PublicKeyToken=040aa135a0ffbd08, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Service.Security\Tenaris.Service.Security.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Service.Security.LanguageResource, Version=4.1.0.0, Culture=neutral, PublicKeyToken=81181649928408e9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Service.Security\Tenaris.Service.Security.LanguageResource.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Service.Security.Shared, Version=4.1.0.0, Culture=neutral, PublicKeyToken=465086d7dfe9d4be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Service.Security\Tenaris.Service.Security.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Controls\BundleEdit.xaml.cs">
+      <DependentUpon>BundleEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CommentsView.xaml.cs">
+      <DependentUpon>CommentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Cradle.xaml.cs">
+      <DependentUpon>Cradle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DlgBundleView.xaml.cs">
+      <DependentUpon>DlgBundleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LoginBar.xaml.cs">
+      <DependentUpon>LoginBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ModalDialogAction.xaml.cs">
+      <DependentUpon>ModalDialogAction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MovePipe.xaml.cs">
+      <DependentUpon>MovePipe.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\BundleEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CommentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Cradle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DlgBundleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LoginBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ModalDialogAction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MovePipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OrderStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SendProduction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\OrderStatus.xaml.cs">
+      <DependentUpon>OrderStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SendProduction.xaml.cs">
+      <DependentUpon>SendProduction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\InverseBoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\VisibilityToBoolConverter.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Resources\BundleList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\BundleRView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\BundleRView_TT32.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\BundleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\BundleView_TT32.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Filters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\TemplateControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\LocalStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="TemplateView.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Theme\LogoTenaris.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logoff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="README_FIRST.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{28963194-4CE4-45A0-88D7-83BF6E713575}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tenaris.View.Exit.Library\Tenaris.View.Exit.Library.csproj">
+      <Project>{49B5CCF3-9205-49B4-AED8-6FFA34C3821A}</Project>
+      <Name>Tenaris.View.Exit.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tenaris.View.Exit.Language\Tenaris.View.Exit.Language.csproj">
+      <Project>{FB378342-ABBC-430F-BB4B-5664F6062294}</Project>
+      <Name>Tenaris.View.Exit.Language</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tenaris.View.Exit.Model\Tenaris.View.Exit.Model.csproj">
+      <Project>{FE72913E-AA82-4DE7-BC69-23104C5A7937}</Project>
+      <Name>Tenaris.View.Exit.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tenaris.View.Exit.ViewModel\Tenaris.View.Exit.ViewModel.csproj">
+      <Project>{DA6FB7CD-2003-43F4-84BD-317B50ADFC26}</Project>
+      <Name>Tenaris.View.Exit.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Template\BundleGrid.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icon_close.png" />
+    <Resource Include="Images\icon_ok.png" />
+    <Resource Include="Images\icon_tool.png" />
+    <Resource Include="Images\icon_warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icon_papelera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icon_reject.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icon_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icon_accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icon_information.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>COPY /y "$(TargetDir)$(TargetName).exe" "%25BINDIR%25\$(TargetName).exe"
+COPY /y "$(TargetDir)$(TargetName).pdb" "%25DEBUGDIR%25\$(TargetName).pdb"
+COPY /y "$(TargetDir)$(TargetName).exe.config" "%25BINDIR%25\$(TargetName).exe.config"
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

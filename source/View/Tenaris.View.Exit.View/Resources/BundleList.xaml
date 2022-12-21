@@ -1,0 +1,349 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    xmlns:UI="clr-namespace:Tenaris.Library.UI.Framework;assembly=Tenaris.Library.UI.Framework"
+                    xmlns:images="clr-namespace:Tenaris.Library.UI.Framework.Resources.Images.Common;assembly=Tenaris.Library.UI.Framework"   
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib"                    
+                    xmlns:g="clr-namespace:System.Globalization;assembly=mscorlib"
+                    xmlns:Lang="clr-namespace:Tenaris.View.Exit.Language;assembly=Tenaris.View.Exit.Language" 
+                    xmlns:IntReq="clr-namespace:Infrastructure.InteractionRequests;assembly=Infrastructure">
+    <ControlTemplate  x:Key="BundleHData">
+        <Grid Background="#F3F3F3" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="0" Grid.Row="0" BorderBrush="Gray" BorderThickness="1" Padding="1">
+                <Label Content="{x:Static Lang:LanguageResource.Bundles}" Style="{StaticResource Header}"/>
+            </Border>
+            <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" >
+                <!--BundleStatusTop-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />                       
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="0" Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Left">
+                        <ContentControl Template="{DynamicResource PipeStatusTop}"/>
+                    </StackPanel>                
+                    <StackPanel Grid.Column="2" Grid.Row="0"  Orientation="Horizontal" HorizontalAlignment="Right">
+                        <ContentControl Template="{DynamicResource BundleHStatusTop}"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <!--<StackPanel >-->
+            <!--Grid de Atados -->
+            <!--<StackPanel Grid.Column="0" Grid.Row="2" >-->
+            <!--<Border  BorderBrush="Gray" BorderThickness="1" Padding="1"  ScrollViewer.HorizontalScrollBarVisibility="Auto"  >-->
+            <!--<ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">-->
+            <DataGrid Name="dtgHBundles"   Grid.Column="0" Grid.Row="2"  
+                         ItemsSource="{Binding HistoricRecord}"
+                                                  CanUserAddRows="False"                                                  
+                                                  Foreground="Black"                                                   
+                                                  AlternationCount="0"
+                                                  Background="#FFFFFF"
+                                                  IsReadOnly="False" AutoGenerateColumns="False"                           
+                                                  SelectedIndex="{Binding BundleHIndex,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                                                  SelectedItem="{Binding SelectedHRecord, Mode=TwoWay}"                                                  
+                                                  SelectionUnit="FullRow" SelectionMode="Single" 
+                                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"     
+                                                  ScrollViewer.VerticalScrollBarVisibility="Auto"                                                                            
+                                                  EnableRowVirtualization="True"                               
+                                                  IsSynchronizedWithCurrentItem="True">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding CmdSelectedHItem}" 
+                                                                           CommandParameter="{Binding Path=SelectedItem,Mode=OneWay, ElementName=dtgHBundles}">
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+
+                        <!--Override Highlighting so that its easy to see what is selected even when the control is not focused-->
+                        <Style.Resources>
+
+
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#660066"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="White"/>
+                        </Style.Resources>
+
+                        <Style.Triggers>
+                            <Trigger Property="AlternationIndex" Value="0">
+                                <Setter Property="Background" Value="White" />
+
+                            </Trigger>
+                            <Trigger Property="AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="White" />
+
+                            </Trigger>
+                            <DataTrigger Binding="{Binding Path=[Status].Value}" Value="Active">
+                                <Setter Property="Background" Value="#fcf1b6"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=[Status].Value}" Value="Future">
+                                <Setter Property="Background" Value="#aabbff"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Id" Width="75">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [IdBundle].Value}" Height="30" Width="80" TextAlignment="Center" ToolTip="Bundle Id">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=[IsManual].Value, Mode=TwoWay}" Value="true">
+                                                              <Setter Property="Background" Value="#ffd700"/>
+                                                              <Setter Property="Foreground" Value="Black"/>
+                                                        </DataTrigger>
+                                                         <DataTrigger Binding="{Binding Path=[IsManual].Value, Mode=TwoWay}" Value="false">
+                                                              <Setter Property="Background" Value="#228b22"/>
+                                                              <Setter Property="Foreground" Value="White"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="No. Lote" Width="75">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [IdBatch].Value}" Height="30" Width="80" TextAlignment="Center" ToolTip="Numero de Lote">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Orden" Width="75">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [OrderNumber].Value}" Height="30" Width="80" TextAlignment="Center" ToolTip="Numero de Colada">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Colada" Width="75">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [HeatNumber].Value}" Height="30" Width="80" TextAlignment="Center" ToolTip="Numero de Colada">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="No. Atado" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [BundleNumber].Value}" Height="30" Width="80" TextAlignment="Center" ToolTip="Numero de Atado">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="EE" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [EE].Value}" Height="30" Width="80" TextAlignment="Center" ToolTip="Estado de Elaboracion">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn    Header="Estatus Atado" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Image x:Name="Img" ToolTip="Estatus del Atado"                                                                         
+                                                                        Stretch="Fill" Height="16" Width="16">
+                                        <Image.Style>
+                                            <Style TargetType="{x:Type Image}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=[Status].Value}" 
+                                                                                            Value="InProcess">
+                                                        <Setter Property="Source" Value="/Images/icon_tool.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=[Status].Value}" 
+                                                                                            Value="Sent">
+                                                        <Setter Property="Source" Value="/Images/icon_ok.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=[Status].Value}" 
+                                                                                            Value="Pending">
+                                                        <Setter Property="Source" Value="/Images/icon_warning.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=[Status].Value}" 
+                                                                                            Value="ErrorSending">
+                                                        <Setter Property="Source" Value="/Images/icon_close.png"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Estado Tubo" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Image x:Name="Img" ToolTip="Estatus del tubo"                                                                         
+                                                                        Stretch="Fill" Height="16" Width="16">
+                                        <Image.Style>
+                                            <Style TargetType="{x:Type Image}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=[ItemStatus].Value}" 
+                                                                                            Value="Good">
+                                                        <Setter Property="Source" Value="/Images/icon_accept.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=[ItemStatus].Value}" 
+                                                                                            Value="Rejected">
+                                                        <Setter Property="Source" Value="/Images/icon_reject.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=[ItemStatus].Value}" 
+                                                                                            Value="Reworked">
+                                                        <Setter Property="Source" Value="/Images/icon_refresh.png"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=[ItemStatus].Value}" 
+                                                                                            Value="Warned">
+                                                        <Setter Property="Source" Value="/Images/icon_warning.png"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="No. Canasta" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [IdCradle].Value}" Height="30" Width="80" TextAlignment="Center" ToolTip="Numero de Canasta">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--<DataGridTemplateColumn Header="Lado" Width="60">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [Side].Value}" Height="30" Width="60" TextAlignment="Center" ToolTip="Lado">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+                    <DataGridTemplateColumn Header="Máximo Piezas" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [MaximumPieces].Value}" Height="30" Width="80" TextAlignment="Center" ToolTip="Máximo de Piezas">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Piezas Cargadas" Width="140">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [Pieces].Value}" Height="30" Width="80" TextAlignment="Center" ToolTip="Piezas Cargadas">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Peso Maximo [Ton]" Width="160">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [MaximumWeight].Value}" Height="30" Width="80" TextAlignment="Center" ToolTip="Peso Máximo permitido">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--<DataGridTemplateColumn Header="Peso Cargado [Ton]" Width="160">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [Weight].Value}" Height="30"  TextAlignment="Center" ToolTip="Peso Cargado">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+
+                    <DataGridTemplateColumn Header="Fecha de Creación" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [CreationDate].Value, StringFormat=dd/MM/yyyy HH:mm}"  Width="150"  TextAlignment="Center" ToolTip="Fecha de Creación">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Fecha de Envio" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [SendingDate].Value, StringFormat=dd/MM/yyyy HH:mm}"   Width="150"  TextAlignment="Center" ToolTip="Fecha de Envio">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--<DataGridTemplateColumn Header="Motivo de Rechazo" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [RejectionCause].Value}" Height="30" Width="100" TextAlignment="Center" ToolTip="Motivo de Rechazo">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Comentarios" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding [Comments].Value}" Height="30"  TextAlignment="Center" ToolTip="Peso Cargado">
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <!--</Border>-->
+            <!--</ScrollViewer>-->
+        </Grid>
+    </ControlTemplate>
+</ResourceDictionary>
+

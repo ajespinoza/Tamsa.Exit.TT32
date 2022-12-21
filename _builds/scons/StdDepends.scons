@@ -1,0 +1,100 @@
+Import("env")
+import os
+import glob
+from SCons.Script.SConscript import SConsEnvironment # just do this once
+
+packages = None
+
+TMPDIR = env.Dir('$TMPDIR')
+
+Alias(
+    'release.ini'
+  , env.VersionRead(
+        TMPDIR.File('release.ini')
+      , env.File('#SConstruct')
+      )
+  )
+
+DEPDIR = env.Dir('$DEPDIR')
+RTLDIR = DEPDIR.Dir('rtl')
+DCPDIR = DEPDIR.Dir('lib')
+
+if DCPDIR.exists():
+    nodes = []
+    for dcp in glob.iglob(os.path.join(DCPDIR.abspath, '*.dcp')):
+        node = env.File(dcp)
+        env.Precious(node)
+        name = node.name
+        #(an, ext) = os.path.splitext(os.path.basename(fn))
+        print node.name
+        alias = env.Alias(node.name, node)
+        nodes.append(alias)
+
+    packages = Alias('packages', nodes)
+
+# Append to the env path the path of the binary dependencies
+PATHs = [DEPDIR.abspath]
+if RTLDIR.exists():
+    PATHs += [RTLDIR.abspath]
+    
+
+# Targets for xx_TLB generation
+targets, binaries, typelibs = env.ImportDependences(
+      sources_dir = DEPDIR
+    , output_dir = '$TLBDIR'
+    )
+
+_TARGET_REGISTER = 'register-depends'
+_TARGET_UNREGISTER = 'unregister-depends'
+
+regdepends = env.RegisterServer(target = _TARGET_REGISTER, source = typelibs) 
+unregdepends = env.UnregisterServer(target = _TARGET_UNREGISTER, source = typelibs)
+
+def _DeleteTargets(target, source, env):
+    for item in target:
+        path = item.abspath
+        path = path.replace(_TARGET_UNREGISTER, _TARGET_REGISTER)
+        try:
+            os.remove(path)
+            print "Removed: %s" % path
+        except:
+            pass
+
+AddPostAction(unregdepends, _DeleteTargets)
+
+env.Alias('register-depends', regdepends)
+env.Alias('unregister-depends', unregdepends)
+env.Depends(targets, regdepends)
+
+for bin in binaries:
+    PATHs += [bin.dir.abspath]
+
+env.PrependENVPath('PATH', PATHs)
+
+# Aliases for dependences
+Alias(['depends', 'BinariesTLB', 'typelibs'], [regdepends, targets, packages])
+
+prepare = Alias('prepare-delphi')
+Depends(prepare, targets)
+
+# Allow for project local redefinition/addition
+
+script = TMPDIR.File('SConscript.scons')
+if script.exists():
+    env.SConscript(script, exports = ['env'])
+
+def _DefineDependences(env, deps):
+    return Alias('dependences', map(lambda node: Alias(node.name, node), env.arg2nodes(Split(deps), env.File)))    
+
+SConsEnvironment.DefineDependences = _DefineDependences
+
+# Allow for project local definition of dependences
+script = env.File('#Dependences.scons')
+if script.exists():
+    env.SConscript(script, exports = ['env'])
+
+
+
+
+
+

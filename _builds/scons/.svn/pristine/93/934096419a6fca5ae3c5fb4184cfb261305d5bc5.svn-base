@@ -1,0 +1,108 @@
+#=================================================================================
+# StdDefaults
+#
+# Standard Defaults definitions
+#
+# Created
+#      by: Ernesto Castro (ercastro@siderca.com) Sep. '07
+#      by: Leandro Conde  (leandor@gmail.com)    Dec. '07
+#=================================================================================
+
+import os
+
+
+Import('env')
+
+RootDir = env.Dir('#') 
+
+
+CONFIGURATION_FILE    = env.File('#configure.py').abspath
+OVERRIDES_FILE        = env.File('#overrides.py').abspath
+
+env['options'] = env.options = Variables([CONFIGURATION_FILE, OVERRIDES_FILE], ARGUMENTS)
+
+env['ENV']['PATH'] = os.environ['PATH']
+env['ENV']['TMP'] = os.environ['TMP']
+env['ENV']['TEMP'] = os.environ['TEMP']
+env['ENV']['USERPROFILE'] = os.environ['USERPROFILE']
+env['ENV']['ProgramFiles'] = os.environ['ProgramFiles']
+env['ENV']['CommonProgramFiles'] = os.environ['CommonProgramFiles']
+env['ENV']['HOMEDRIVE'] = os.environ['HOMEDRIVE']
+env['ENV']['HOMEPATH'] = os.environ['HOMEPATH']
+env['ENV']['ALLUSERSPROFILE'] = os.environ['ALLUSERSPROFILE']
+env['ENV']['APPDATA'] = os.environ['APPDATA']
+env['ENV']['windir'] = os.environ['windir'] 
+
+if os.environ.has_key('StyleCopPath'):
+    env['ENV']['StyleCopPath'] = os.environ['StyleCopPath']
+
+temp = env.Dir(env['ENV']['TEMP'])
+pfiles = env.Dir(env['ENV']['ProgramFiles'])
+
+if pfiles.exists():
+    env['PROGRAM_FILES'] = pfiles
+
+if not temp.exists():
+    temp = env.Dir(env['ENV']['TMP'])
+
+env['TMP'] = temp
+env['TEMP'] = temp
+env['BUILDTMP'] = temp.Dir('.scons')
+
+# Sets the 'Build' key to the environmnet (it could be debug or release, for now...)
+env.options.Add(
+    EnumVariable(
+         key            = 'BUILD_PROFILE'
+       , help           = 'Defines the kind of Build desired.'
+       , default        = 'debug'
+       , allowed_values = ['release', 'debug']
+       , ignorecase     = 2
+       )
+    )
+
+env.options.Update(env)
+
+# We add the custom builders developed by us
+env.SConscript('StdToolBuilders.scons', exports = 'env')
+# Load standard config
+env.SConscript('StdConfig.scons', exports = 'env')
+
+# Search for extra defaults
+defaults = env.File('#Defaults.scons')
+if defaults.exists():
+    env.SConscript(defaults, exports = ['env'])
+    
+# Load extra and override configs
+config = env.File('#Config.scons')
+if config.exists():
+    env.SConscript(config, exports = ['env'])
+
+def _svnupdate(target, source, env):
+    import pysvn
+    print '*** StdConstruct.scons SVN executing update ...'
+    client = pysvn.Client()
+    revision = client.update(RootDir.abspath, recurse=True)
+    print '*** StdConstruct.scons SVN updated to revision %d' % revision[0].number
+
+svnup = env.Command(
+    target  = '$BUILDTMP/svn-update'
+  , source  = None
+  , action  = _svnupdate
+  )
+
+svnup = Alias('update', svnup)
+
+def _doSaveOptions(target, source, env):
+    env.options.Update(env)
+    env.options.Save(OVERRIDES_FILE, env)
+
+do_save = env.Command(
+    target  = '$BUILDTMP/save_variables.marker'
+  , source  = None
+  , action  = Action(_doSaveOptions, show = 0)
+  , show = 0                             
+  )
+
+Alias('save-options', do_save)
+
+

@@ -1,0 +1,32 @@
+﻿<Application x:Class="Tenaris.View.Exit.View.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Tenaris.View.Exit.ViewModel;assembly=Tenaris.View.Exit.ViewModel"
+             xmlns:images="clr-namespace:Tenaris.Library.UI.Framework.Resources.Images;assembly=Tenaris.Library.UI.Framework"
+             xmlns:UI="clr-namespace:Tenaris.Library.UI.Framework;assembly=Tenaris.Library.UI.Framework"      
+             xmlns:lib="clr-namespace:Tenaris.View.Exit.Library;assembly=Tenaris.View.Exit.Library"
+             StartupUri="MainWindow.xaml">
+       <Application.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Tenaris.Library.UI.Framework;component/Themes/Generic.xaml"/>
+                    <ResourceDictionary Source="/Tenaris.View.Exit.View;component/Theme/LocalStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Tenaris.View.Exit.View;component/Resources/ProductView.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Tenaris.View.Exit.View;component/Resources/BundleView_TT32.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Tenaris.View.Exit.View;component/Resources/ItemView.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Tenaris.View.Exit.View;component/Resources/Filters.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Tenaris.View.Exit.View;component/Resources/BundleList.xaml" />                
+                
+                <ResourceDictionary Source="/Resources/TemplateControls.xaml"/>                 
+                </ResourceDictionary.MergedDictionaries>
+
+                <lib:ColorToBrushConverter x:Key="ColorToBrush"/>
+                <lib:BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+                <!--<lib:StatusConverter x:Key="StatusOrder"/>-->
+                <!--<lib:ItemConverter x:Key="CheckItem"/>-->
+
+            </ResourceDictionary>
+        </Application.Resources>
+   
+
+</Application>

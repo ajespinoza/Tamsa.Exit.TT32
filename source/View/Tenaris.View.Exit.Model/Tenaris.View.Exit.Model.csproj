@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FE72913E-AA82-4DE7-BC69-23104C5A7937}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tenaris.View.Exit.Model</RootNamespace>
+    <AssemblyName>Tenaris.View.Exit.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>TemplateView.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tamsa.Service.Specification.Client">
+      <HintPath>..\..\..\_temp\_bin\Tamsa.Service.Specification\Tamsa.Service.Specification.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Tamsa.Service.Specification.Library">
+      <HintPath>..\..\..\_temp\_bin\Tamsa.Service.Specification\Tamsa.Service.Specification.Library.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.ConnectionMonitor">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Proxy\Tenaris.Library.ConnectionMonitor.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.DbClient">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.DbClient\Tenaris.Library.DbClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Framework">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Framework\Tenaris.Library.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Log">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Log\Tenaris.Library.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Proxy">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Proxy\Tenaris.Library.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Shared">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Library.Shared\Tenaris.Library.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Manager.Forum.Shared">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Manager.Forum.Shared\Tenaris.Manager.Forum.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Manager.Tracking.Shared">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Manager.Tracking\Tenaris.Manager.Tracking.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Service.Security">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Service.Security\Tenaris.Service.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Service.Security.Client">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Service.Security\Tenaris.Service.Security.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Service.Security.Shared">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Service.Security\Tenaris.Service.Security.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Service.Specification.Shared">
+      <HintPath>..\..\..\_temp\_bin\Tenaris.Service.Specification\Tenaris.Service.Specification.Shared.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adapter\ExitManagerAdapter.cs" />
+    <Compile Include="Adapter\SpecificationAdapter.cs" />
+    <Compile Include="Configuration\ExitViewConfiguration.cs" />
+    <Compile Include="Configuration\ProxyConfiguration.cs" />
+    <Compile Include="Data\AreaRecord.cs" />
+    <Compile Include="Data\DataAccess.cs" />
+    <Compile Include="Data\MachineRecord.cs" />
+    <Compile Include="Data\RejectionCause.cs" />
+    <Compile Include="Data\StoredProcedures.cs" />
+    <Compile Include="ExitModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\ElaborationState.cs" />
+    <Compile Include="Types\GroupElaborationState.cs" />
+    <Compile Include="Types\RejectionCode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TemplateView.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\lib\Tamsa.Manager.Exit.Shared\Tamsa.Manager.Exit.Shared.csproj">
+      <Project>{49F7FAAF-7741-467D-9DEE-4D6C8C8566F3}</Project>
+      <Name>Tamsa.Manager.Exit.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>COPY /y "$(TargetDir)$(TargetFileName)" "%25BINDIR%25\$(TargetFileName)
+COPY /y "$(TargetDir)$(TargetName).pdb" "%25DEBUGDIR%25\$(TargetName).pdb"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

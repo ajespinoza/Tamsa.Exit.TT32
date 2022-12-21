@@ -1,0 +1,30 @@
+#=================================================================================
+# Builders.scons
+#
+# File that creates all the custom builders and adds them to the environment
+#	It read Release.scons or Debug.scons depending on the
+#   calling parameters of scons
+#
+# Created
+#      by: Ernesto Castro (ercastro@siderca.com) Sep. '07
+#      by: Leandro Conde  (leandor@gmail.com)    Dec. '07
+#=================================================================================
+
+import BuildTools
+
+Import('env')
+
+env.AddBuilders('./tools')
+env.AddTools('../tools')
+
+BuildType = env['BUILD_PROFILE']
+
+if BuildType.lower() == 'debug':
+    construct = 'StdBuildDebug.scons'
+else:
+    construct = 'StdBuildRelease.scons'
+
+env.SConscript(
+    construct
+    , exports = 'env'
+  )

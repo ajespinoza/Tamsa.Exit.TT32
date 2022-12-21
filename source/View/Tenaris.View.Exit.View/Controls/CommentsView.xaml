@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Tenaris.View.Exit.View.Controls.CommentsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:UI="clr-namespace:Tenaris.Library.UI.Framework;assembly=Tenaris.Library.UI.Framework"
+             xmlns:images="clr-namespace:Tenaris.Library.UI.Framework.Resources.Images;assembly=Tenaris.Library.UI.Framework"        
+             xmlns:res="clr-namespace:Tenaris.View.Exit.Language;assembly=Tenaris.View.Exit.Language"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Width="400" Height="200">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Tenaris.Library.UI.Framework;component/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction  Command="{Binding CommandClose}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label  Style="{StaticResource Header}" Content="{Binding HeaderText}" />
+        <Grid Grid.Row="1" MinWidth="150">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image  Width="48" Height="48" Margin="10,0,10,0">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=WindowModalType}" Value="Warning">
+                                <Setter Property="Source" Value="/Images/icon_warning.png"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=WindowModalType}" Value="Error">
+                                <Setter Property="Source" Value="/Images/icon_close.png"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=WindowModalType}" Value="Information">
+                                <Setter Property="Source" Value="/Images/icon_information.png"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <TextBlock FontSize="13" TextAlignment="Center" FontFamily="Verdana"  Height="39"  VerticalAlignment="Center"
+                           TextWrapping="Wrap" Text="{Binding ConfirmMessage}" Margin="65,6,10,94"  Style="{StaticResource TableItemCell}" Grid.ColumnSpan="2">
+            </TextBlock>
+            <TextBox Grid.Column="1" Height="55" HorizontalAlignment="Left" Margin="10,76,0,0" Name="textBox1" VerticalAlignment="Top" Width="305" Text="{Binding BundleComments}" />
+            <Label Content="Comentarios del Atado:" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="77,47,0,0" Name="label1" VerticalAlignment="Top" />
+        </Grid>
+        <!--<Border BorderBrush="Gray" BorderThickness="0" Padding="2" Grid.Row="4">-->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" DataContext="{Binding}">
+            <Button  Content="{x:Static res:LanguageResource.Accept}" UI:Image.Source="{x:Static images:Common.Size_22.icon_accept}" Grid.Row="3" Margin="3" Command="{Binding ConfirmCommentRequest}">
+            </Button>
+            <Button  Content="{x:Static res:LanguageResource.Cancel}" UI:Image.Source="{x:Static images:Common.Size_22.icon_cancel}" Grid.Row="3" Margin="3" Command="{Binding CommandClose}">
+            </Button>
+        </StackPanel>
+        <!--</Border>-->
+    </Grid>
+</UserControl>

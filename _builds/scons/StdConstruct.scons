@@ -1,0 +1,70 @@
+#=====================================================================
+# StdConstruct
+#
+# Main common file for every SCons standard building scripts
+#
+# Created
+#       by: Ernesto Castro (ercastro@siderca.com) Sep. '07
+#       by: Leandro Conde  (leandor@gmail.com)    Dec. '07
+#=====================================================================
+
+## We're using SCons.Variables which came first with SCons-0.98.1  
+EnsureSConsVersion(0, 98, 1)
+
+Import('env')
+
+# Load standard SConscripts
+env.SConscript('StdDefaults.scons', exports = 'env')
+env.SConscript('StdDepends.scons', exports = 'env')
+
+# We walk trough every 'fuentes/_ext/_lib/*/Library.scons' importing them
+env.SConscripts(base_dirs = '$LIBDIR', exclude = '[\.]+.*', script = 'Library.scons', exports='env')
+
+# We walk trough every 'fuentes/library/*/Library.scons' importing them
+env.SConscripts(base_dirs = '$PROJLIBS', exclude = '[\.]+.*', script = 'Library.scons', exports='env')
+env.SConscripts(base_dirs = '$COMMONSRC', exclude = '[\.]+.*', script = 'Library.scons', exports='env')
+
+# We walk trough every 'fuentes/_ext/*/Library.scons' importing them (except for _lib)
+subsys = env.Dir('$EXTDIR/_sys')
+if subsys.exists():
+    env.SConscripts(base_dirs = subsys, exclude = '[\.]+.*', script = 'Library.scons', exports='env')
+
+# Allow defining extra LIB directories before creating builders
+library = env.File('#Library.scons')
+if library.exists():
+    env.SConscript(library, exports='env')
+
+# We walk trough every 'fuentes/*/*/Project.scons' importing them and creating the builders for them
+env.SConscripts(base_dirs = '$SRCDIR/*', exclude = '[_\.]+.*', script = 'Project.scons', exports='env')
+
+# We walk trough every 'fuentes/*/*/Test.scons' importing them and creating the builders for them
+env.SConscripts(base_dirs = '$SRCDIR/*', exclude = '[_\.]+.*', script = 'Test.scons', exports='env')
+
+env.SConscript('StdInstall.scons', exports = 'env')
+
+# Standard Aliases for normal targets
+delphi = Alias('delphi')
+dotnet = Alias('dotnet')
+prepare = Alias('prepare')
+prepare_dotnet = Alias('prepare-dotnet')
+prepare_delphi = Alias('prepare-delphi')
+update = Alias('update')
+compile = Alias('compile')
+test = Alias('test')
+build = Alias('build')
+release = env.Alias('release', '#release')
+all = Alias('all')
+
+Depends(prepare, [prepare_delphi])
+Depends(delphi, [prepare])
+Depends(build, [compile, test])
+Depends(release, [compile])
+Depends(all, [build, release])
+
+Default(compile)
+
+env.options.Update(env)
+Help(env.options.GenerateHelpText(env))
+
+
+

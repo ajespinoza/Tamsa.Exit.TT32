@@ -1,0 +1,17 @@
+#################################################################################################
+#
+# Release.scons
+#
+# Add release specific builders and tune some parameters for releasing
+#
+# YOU SHOULDNT NEED TO EDIT THIS FILE!!!
+#
+#
+# 	Created by: Ernesto Castro (ercastro@siderca.com) Sep. '07
+#
+#################################################################################################
+
+Import('env')
+
+env['DCC32_OPTS'] = '-B -Q'
+env['DCC32_SWITCHES'] = '-$$D- -$$I- -$$L- -$$O- -$$W+ -$$Y-'

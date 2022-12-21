@@ -1,0 +1,336 @@
+﻿<Window x:Class="Tenaris.View.Exit.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"        
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:Interactivity="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:int="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:UI="clr-namespace:Tenaris.Library.UI.Framework;assembly=Tenaris.Library.UI.Framework"
+        xmlns:images="clr-namespace:Tenaris.Library.UI.Framework.Resources.Images;assembly=Tenaris.Library.UI.Framework"                        
+        xmlns:Views="clr-namespace:Tenaris.View.Exit.View"
+        xmlns:controls="clr-namespace:Tenaris.View.Exit.View.Controls"                           
+        xmlns:prism="clr-namespace:Microsoft.Practices.Prism.Interactivity.InteractionRequest;assembly=Microsoft.Practices.Prism.Interactivity"     
+        xmlns:Action="clr-namespace:Tenaris.Library.UI.Framework.Interactivity;assembly=Tenaris.Library.UI.Framework"
+        xmlns:IntReq="clr-namespace:Infrastructure.InteractionRequests;assembly=Infrastructure"
+        xmlns:TenarisInteractivity="http://schemas.tenaris.ot/xaml/interactivity"        
+          
+        
+        xmlns:vm="clr-namespace:Tenaris.View.Exit.ViewModel;assembly=Tenaris.View.Exit.ViewModel"
+        xmlns:Lang="clr-namespace:Tenaris.View.Exit.Language;assembly=Tenaris.View.Exit.Language"                        
+      
+        Title="{x:Static Lang:LanguageResource.ViewTitle}"         
+        Top="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Top}"
+        Left="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Left}"
+        Width="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width}"
+        Height="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height}">
+    <!--
+        El DataContext hace referencia a la instacia del viewModel referenciado por dataInstances en app.xaml    
+        De preferencia todas las vistas deben tener su viewModel definido en dataInstances para
+        un acceso sencillo desde la vistas como de los viewModels
+    -->
+    <!--DataContext="{Binding MainViewModel, Source={StaticResource dataInstances}}"-->
+    <Window.DataContext>
+        <vm:ExitViewModel/>        
+    </Window.DataContext>
+
+    <Interactivity:Interaction.Triggers>
+
+        <!-- comandos de los eventos de la ventana -->
+        <!--<Interactivity:EventTrigger EventName="Loaded">
+            <Interactivity:InvokeCommandAction Command="{Binding WindowLoaded}" />
+        </Interactivity:EventTrigger>
+        <Interactivity:EventTrigger EventName="Closing">
+            <Interactivity:InvokeCommandAction Command="{Binding WindowClosing}" />
+        </Interactivity:EventTrigger>-->
+        <prism:InteractionRequestTrigger SourceObject="{Binding MovePipeViewWindowRequest, Mode=OneWay}">
+            <IntReq:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True"
+                                      WinStartUpLocation="CenterOwner" WindowsStyle="ToolWindow">
+                <IntReq:PopupWindowAction.WindowContent>
+                    <controls:MovePipe/>
+                </IntReq:PopupWindowAction.WindowContent>
+            </IntReq:PopupWindowAction>
+        </prism:InteractionRequestTrigger>
+
+        <prism:InteractionRequestTrigger SourceObject="{Binding ConfirmCommentRequest, Mode=OneWay}">
+            <IntReq:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True"
+                                      WinStartUpLocation="CenterOwner" WindowsStyle="ToolWindow">
+                <IntReq:PopupWindowAction.WindowContent>
+                    <controls:CommentsView/>
+                </IntReq:PopupWindowAction.WindowContent>
+            </IntReq:PopupWindowAction>
+        </prism:InteractionRequestTrigger>
+
+        <prism:InteractionRequestTrigger SourceObject="{Binding InsertBundleViewWindowRequest, Mode=OneWay}">
+            <IntReq:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True"
+                                      WinStartUpLocation="CenterOwner" WindowsStyle="ToolWindow">
+                <IntReq:PopupWindowAction.WindowContent>
+                    <controls:BundleView/>
+                </IntReq:PopupWindowAction.WindowContent>
+            </IntReq:PopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding EditBundleViewWindowRequest, Mode=OneWay}">
+            <IntReq:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True"
+                                      WinStartUpLocation="CenterOwner" WindowsStyle="ToolWindow">
+                <IntReq:PopupWindowAction.WindowContent>
+                    <controls:BundleEdit/>
+                </IntReq:PopupWindowAction.WindowContent>
+            </IntReq:PopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding ModalDialogViewWindowRequest, Mode=OneWay}">
+            <IntReq:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True" WinStartUpLocation="CenterOwner" WindowResizeMode="NoResize" WindowsStyle="None">
+                <IntReq:PopupWindowAction.WindowContent>
+                    <controls:ModalDialogAction/>
+                </IntReq:PopupWindowAction.WindowContent>
+            </IntReq:PopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding SendProductionViewWindowRequest, Mode=OneWay}">
+            <IntReq:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True"
+                                      WinStartUpLocation="CenterOwner" WindowsStyle="ToolWindow">
+                <IntReq:PopupWindowAction.WindowContent>
+                    <controls:SendProduction/>
+                </IntReq:PopupWindowAction.WindowContent>
+            </IntReq:PopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding ConfirmApplyRequest, Mode=OneWay}">
+            <Action:ModalDialogAction   ContentTemplate="{StaticResource ConfirmApply}" />
+        </prism:InteractionRequestTrigger>
+     
+    </Interactivity:Interaction.Triggers>
+
+
+        <!--BasedOn="{StaticResource TenarisWindow}"-->
+    <Window.Style>
+        <Style TargetType="Window">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding DskMgr}" Value="False">
+                    <Setter Property="WindowStyle" Value="SingleBorderWindow" />
+                    <Setter Property="ResizeMode" Value="CanResize" />
+                    <Setter Property="WindowState" Value="Normal" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding DskMgr}" Value="True">
+                    <Setter Property="WindowStyle" Value="None" />
+                    <Setter Property="ResizeMode" Value="NoResize" />
+                    <Setter Property="WindowState" Value="Normal" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
+
+    <!--
+        Eventos de apertura y cierre de la ventana principal
+    -->
+   
+        <!-- TO DO
+            Definicion de cuadros de dialogos, creamos solo una instacia de cada tipo
+            para ser usado por todo el proyecto, el control de cada dialogo se hace
+            a traves de su viewModel respectivo
+        -->
+
+        <!-- Dialogo de ejemplo
+            Declara el dialogo como modal
+            e indica la variable que lo abrira
+            en este caso la InteractionRequest<Confirmation> 
+            definido en el view model del dialog
+        
+            La tenaris library tiene diversas variables que modifican la forma en que se muestra
+            el dialog, en este caso usamos todos los valores por default.
+        
+        -->
+        <!--<Prism:InteractionRequestTrigger 
+            SourceObject="{Binding ShowStateDlgVM.OpenRequest, Mode=OneWay, Source={StaticResource dataInstances}}">
+            <TenarisInteractivity:ModalDialogAction>
+                <TenarisInteractivity:ModalDialogAction.ContentTemplate>
+                    <DataTemplate>
+                        <Dialogs:ShowStateDialog />
+                    </DataTemplate>
+                </TenarisInteractivity:ModalDialogAction.ContentTemplate>
+            </TenarisInteractivity:ModalDialogAction>
+        </Prism:InteractionRequestTrigger>-->
+
+
+    <Grid>
+
+         
+     
+
+        <!-- status bar -->
+        <!--<Border DockPanel.Dock="Bottom" Margin="1" Padding="0" Height="28" 
+                BorderBrush="DarkGray" BorderThickness="1">
+         
+            <StackPanel Orientation="Horizontal">
+
+                <Button Command="{Binding ShowLoginCommand}" Width="25" Height="25"  HorizontalAlignment="Left" VerticalContentAlignment="Center"
+                        Visibility="{Binding Path=ShowLoginButton, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/images/logoff.png" Stretch="None" TileMode="None" />
+                    </Button.Background>
+                </Button>
+
+                <Label Content="{x:Static Lang:LanguageResource.User}" Width="80" />
+                <Label Content="{Binding UserName}" Width="100" />
+                                               
+            </StackPanel>
+
+        </Border>-->
+
+        <!-- TO DO
+            Layout principal de la vista
+        -->
+        <TabControl Name="tabState" SelectedIndex="{Binding Path=SelectedIndexTab}" Height="Auto">
+
+            <!-- NOTA
+                Los string dependientes del idioma deben ser definidos en la libreria de LanguageResource
+                y ser usados tal como se muestra en los titulos de los TabItem siguientes
+            -->
+
+            <TabItem Header="{x:Static Lang:LanguageResource.ViewName1}" Visibility="Collapsed">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="0" Grid.Row="0">
+                        <ContentControl Template="{DynamicResource ProductData}"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="{x:Static Lang:LanguageResource.ViewName2}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>                
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Expander Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource ExpanderTemplate}" Header="{x:Static Lang:LanguageResource.ProductTitle}" IsExpanded="False">
+                        <ContentControl Template="{DynamicResource ProductData}" />
+                    </Expander>
+                    <Expander Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ExpanderTemplate}" Header="{x:Static Lang:LanguageResource.Cradles}" IsExpanded="True">                    
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                             <ItemsControl  Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Cradles}">
+                        <ItemsControl.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <ItemsPresenter/>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding CradlesCount}"></UniformGrid>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="1" Height="Auto">                                  
+                                    <controls:Cradle/>
+                                            <Border.Style>
+                                                <Style TargetType="{x:Type Border}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsSelected, Mode=TwoWay}" Value="true">
+                                                            <Setter Property="BorderBrush" Value="#228b22"/>
+                                                            <Setter Property="BorderThickness" Value="2"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsSelected, Mode=TwoWay}" Value="false">
+                                                            <Setter Property="BorderBrush" Value="Black"/>
+                                                            <Setter Property="BorderThickness" Value="0"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                       <!--<StackPanel Grid.Column="0" Grid.Row="1">
+                            <ContentControl Content="{Binding}" Template="{StaticResource CheckCradles}"/>
+                        </StackPanel>-->
+                            
+                        </Grid>
+                    </Expander>                                      
+                    <ContentControl  Grid.Column="0" Grid.Row="2" Template="{DynamicResource BundleData}"/>                
+                    <Border Grid.Column="1" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" Padding="1">
+                        <ContentControl  Template="{DynamicResource ItemData}"/>
+                    </Border>
+                   
+                    <Border DockPanel.Dock="Bottom" BorderBrush="Gray" Grid.Column="0" Grid.Row="3" Padding="2" Grid.ColumnSpan="2">
+                        <Label Margin="1" Content="Seleccione el atado para ver el detalle " Style="{StaticResource SubHeader}" HorizontalContentAlignment="Left"/>
+                    </Border>                        
+                    <DockPanel Grid.Column="0" Grid.Row="4">
+                        <StackPanel DockPanel.Dock="Bottom">
+
+                            <Border BorderBrush="Gray" BorderThickness="1" Padding="2">
+                                <!--Comandos de Orden de Carga-->
+                                <ContentControl Content="{Binding}" Template="{StaticResource CradleCommand}"/>
+                            </Border>
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="4">
+                        <StackPanel DockPanel.Dock="Bottom">
+
+                            <Border BorderBrush="Gray" BorderThickness="1" Padding="2">
+                                <!--Comandos de Orden de Carga-->
+                                <ContentControl Content="{Binding}" Template="{StaticResource BundleCommand}"/>
+                            </Border>
+                        </StackPanel>
+                    </DockPanel>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="{x:Static Lang:LanguageResource.ViewName3}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                        <ContentControl  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Template="{DynamicResource FiltersData}"/>
+                        <ContentControl  Grid.Column="0" Grid.Row="1" Template="{DynamicResource BundleHData}"/>
+                         <Border Grid.Column="1" Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Padding="1">
+                              <ContentControl  Template="{DynamicResource ItemHData}"/>
+                        </Border>
+                    <Border DockPanel.Dock="Bottom" BorderBrush="Gray" Grid.Column="0" Grid.Row="2" Padding="2" Grid.ColumnSpan="2">
+                        <Label Margin="1" Content="Seleccione el atado para ver el detalle " Style="{StaticResource SubHeader}" HorizontalContentAlignment="Left"/>
+                    </Border>
+                    <DockPanel Grid.Column="0" Grid.Row="3">
+                        <StackPanel DockPanel.Dock="Bottom">
+
+                            <Border BorderBrush="Gray" BorderThickness="1" Padding="2">
+                                <!--Comandos de Orden de Carga-->
+                                <ContentControl Content="{Binding}" Template="{StaticResource CradleHCommand}"/>
+                            </Border>
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="3">
+                        <StackPanel DockPanel.Dock="Bottom">
+
+                            <Border BorderBrush="Gray" BorderThickness="1" Padding="2">
+                                <!--Comandos de Orden de Carga-->
+                                <ContentControl Content="{Binding}" Template="{StaticResource BundleHCommand}"/>
+                            </Border>
+                        </StackPanel>
+                    </DockPanel>
+
+                </Grid>
+            </TabItem>
+            
+        </TabControl>
+
+    </Grid>
+
+</Window>

@@ -1,0 +1,57 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    xmlns:UI="clr-namespace:Tenaris.Library.UI.Framework;assembly=Tenaris.Library.UI.Framework"
+                    xmlns:images="clr-namespace:Tenaris.Library.UI.Framework.Resources.Images.Common;assembly=Tenaris.Library.UI.Framework"   
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib"                    
+                    xmlns:g="clr-namespace:System.Globalization;assembly=mscorlib"
+                    xmlns:Lang="clr-namespace:Tenaris.View.Exit.Language;assembly=Tenaris.View.Exit.Language">
+
+    <ControlTemplate  x:Key="FiltersData">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Content="{x:Static Lang:LanguageResource.SearchBy}" Style="{StaticResource Header}"/>
+            <Border Grid.Column="0" Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Padding="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <CheckBox Grid.Row="0" Grid.Column="0" Style="{StaticResource SubHeaderTitle}" Content="{x:Static Lang:LanguageResource.FilterDate}" Name="checkBoxFrom" 
+                          Width="98" IsChecked="{Binding IsCheckedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DatePicker  Grid.Row="0" Grid.Column="1" Name="FromDate" Width="200" IsEnabled="{Binding IsCheckedDate}" SelectedDate="{Binding Path=ShiftDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
+                    <CheckBox Grid.Row="0" Grid.Column="3" Style="{StaticResource SubHeaderTitle}" Content="{x:Static Lang:LanguageResource.FilterShift}" Name="checkBoxShift" 
+                          Width="98" IsChecked="{Binding IsCheckedShift, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox  Grid.Row="0" Grid.Column="4" Name="Shift" Width="200" IsEnabled="{Binding IsCheckedShift}" SelectedValue="{Binding ShiftNumber, Mode=TwoWay}" ItemsSource="{Binding Shifts}" DisplayMemberPath="Value" SelectedValuePath="Key"></ComboBox>
+                    <CheckBox Grid.Row="0" Grid.Column="6" Style="{StaticResource SubHeaderTitle}" Content="{x:Static Lang:LanguageResource.FilterOrder}" Name="checkBoxOrder" 
+                          Width="98" IsChecked="{Binding IsCheckedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Grid.Row="0" Grid.Column="7" Margin="1" Text="{Binding FilterOrder}" FontWeight="Bold"/>
+                </Grid>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Padding="2">
+                <StackPanel Orientation="Horizontal" Height="Auto" HorizontalAlignment="Left" DataContext="{Binding}">
+                    <Button Name="btnSearch" Content="{x:Static Lang:LanguageResource.Search}" UI:Image.Source="{x:Static images:Size_22.icon_search}" Command="{Binding CmdSearchBundles}" />
+                    <Button Name="btnReset" Content="{x:Static Lang:LanguageResource.Reset}" UI:Image.Source="{x:Static images:Size_22.icon_reset}" Command="{Binding CmdResetFilters}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+</ResourceDictionary>
